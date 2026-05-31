@@ -1,4 +1,4 @@
-const BASE = import.meta.env.DATABASE_URL;
+const BASE = import.meta.env.API_URL || '/api/stack';
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
