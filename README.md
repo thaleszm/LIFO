@@ -52,32 +52,42 @@ docker compose up -d
 
 Credenciais: usuário `lifo`, senha `lifo123`, banco `lifolab`, porta `5432`.
 
-## Início rápido
+## Início rápido (Neon + porta 3000)
 
-### 1. Configure o banco
+### 1. Configure o Neon no backend
 
-Escolha uma das opções acima e confirme que o `backend/.env` aponta para o PostgreSQL correto.
+1. Crie um projeto em [Neon](https://neon.tech) e copie a **connection string**
+2. Cole em `backend/.env`:
 
-### 2. Backend
+```
+API_ONLY=true
+PORT=3001
+DATABASE_URL=postgresql://usuario:senha@ep-xxxx.neon.tech/neondb?sslmode=require
+```
+
+> As tabelas são criadas automaticamente quando a API inicia.
+
+### 2. Instale e rode
+
+Na **raiz** do projeto:
 
 ```bash
-cd backend
-cp .env.example .env
 npm install
+cd backend && npm install && cd ../frontend && npm install && cd ..
 npm run dev
 ```
 
-API disponível em `http://localhost:3001`.
+Abra **http://localhost:3000** — site React + API na mesma porta, dados no Neon.
 
-### 3. Frontend
+> Para hot-reload do React enquanto edita o frontend: `npm run dev:hot` (Vite na 3000, API na 3001).
+
+### 3. Produção
 
 ```bash
-cd frontend
-npm install
-npm run dev
+npm start
 ```
 
-Abra `http://localhost:5173` no navegador.
+Builda o frontend e sobe tudo em **http://localhost:3000**.
 
 ## API
 
