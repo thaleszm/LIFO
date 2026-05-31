@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lifolab-db
+    environment:
+      POSTGRES_USER: lifo
+      POSTGRES_PASSWORD: lifo123
+      POSTGRES_DB: lifolab
+    ports:
+      - "5432:5432"
+    volumes:
+      - lifolab_pgdata:/var/lib/postgresql/data
+
+volumes:
+  lifolab_pgdata:
