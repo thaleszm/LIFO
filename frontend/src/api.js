@@ -1,4 +1,4 @@
-const BASE = import.meta.env.API_URL || '/api/stack';
+const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/stack';
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
